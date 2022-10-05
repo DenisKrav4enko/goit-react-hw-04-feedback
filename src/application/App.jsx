@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Wrapper } from './StyeledComponents';
 import Section from './feedbackWidget/section/Section';
 import FeedbackOptions from './feedbackWidget/feedbackOptions/FeedbackOptions';
@@ -12,13 +13,11 @@ export const App = () => {
   const [bad, setBad] = useState(0);
 
   const countTotalFeedback = () => {
-    const total = good + neutral + bad;
-    return total
+    return good + neutral + bad;
   }
 
   const countPositiveFeedbackPercentage = () => {
-    const positivePercentage = Math.round(100 * good / countTotalFeedback())
-    return positivePercentage
+    return Math.round(100 * good / countTotalFeedback())
   }
 
   const onLeaveFeedback = event => {
@@ -50,8 +49,8 @@ export const App = () => {
               bad={bad}
               good={good}
               total={countTotalFeedback()}
-              options={options}
               neutral={neutral}
+              options={options}
               positivePercentage={countPositiveFeedbackPercentage()}
             />
             : <Notification message={'There is no feedback'}/>
@@ -60,3 +59,20 @@ export const App = () => {
     </Wrapper>
   );
 };
+
+App.propTypes = {
+  bad: PropTypes.number,
+  good: PropTypes.number,
+  total: PropTypes.number,
+  setBad: PropTypes.func,
+  options: PropTypes.array,
+  setGood: PropTypes.func,
+  neutral: PropTypes.number,
+  message: PropTypes.string,
+  component: PropTypes.element,
+  setNeutral: PropTypes.func,
+  onLeaveFeedback: PropTypes.func,
+  countTotalFeedback: PropTypes.func,
+  positivePercentage: PropTypes.number,
+  countPositiveFeedbackPercentage: PropTypes.func,
+}

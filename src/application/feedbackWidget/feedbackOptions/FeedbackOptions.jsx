@@ -30,7 +30,11 @@ const FeedbackOptions = props => {
 }
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.array,
+  id: PropTypes.number,
+  item: PropTypes.object,
+  label: PropTypes.string,
+  title: PropTypes.string,
+  options: PropTypes.array.isRequired,
   onLeaveFeedback: PropTypes.func,
 };
 
